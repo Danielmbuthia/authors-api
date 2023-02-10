@@ -29,7 +29,7 @@ volume:
 	docker volume inspect authors-src_local_postgres_data
 
 authors-db:
-	docker compose -f local.yml exec postgres psql --username=postgres --dbname=author
+	docker compose -f local.yml exec postgres psql --username=postgres --dbname=authors
 
 flake8:
 	docker compose -f local.yml exec api flake8 .
