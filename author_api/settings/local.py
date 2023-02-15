@@ -10,7 +10,7 @@ SECRET_KEY = env(
     default='kk9hq9+psl0%76ce00ba2rd9ohxf(l2lqn2i8b2!ik&po8_8px'
 )
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 
 # email backend
 EMAIL_BACKEND = "djcelery_email.backends.CeleryEmailBackend"

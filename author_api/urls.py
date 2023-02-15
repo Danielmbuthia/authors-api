@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
+from django.urls import include, path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
@@ -9,8 +10,8 @@ schema_view = get_schema_view(
     openapi.Info(
         title="Authors API",
         default_version="v1",
-        description="API endpoints for the Authors API",
-        contact=openapi.Contact(email="authors@gmail.com"),
+        description="API endpoints for the Authors API course",
+        contact=openapi.Contact(email="api.imperfect@gmail.com"),
         license=openapi.License(name="MIT License"),
     ),
     public=True,

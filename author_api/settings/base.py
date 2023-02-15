@@ -38,15 +38,15 @@ LOCAL_APPS = ['core_apps.users','core_apps.common','core_apps.profiles']
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.common.BrokenLinkEmailsMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.common.BrokenLinkEmailsMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 ROOT_URLCONF = 'author_api.urls'
@@ -148,10 +148,15 @@ AUTH_USER_MODEL = 'users.User'
 
 CELERY_BROKER_URL = env("CELERY_BROKER")
 CELERY_RESULT_BACKEND = env("CELERY_BACKEND")
-CELERY_TIMEZONE = "Africa/Kigali"
+CELERY_TIMEZONE = "Africa/Nairobi"
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
+
+REST_FRAMEWORK = {
+    "EXCEPTION_HANDLER":"core_apps.common.exceptions.common_exceptions_handler",
+    "NON_FIELD_ERRORS_KEY":'error',
+}
 
 LOGGING = {
     "version": 1,
