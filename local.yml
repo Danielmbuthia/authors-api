@@ -19,6 +19,7 @@ services:
         depends_on:
             - postgres
             - mailhog
+            - redis
         networks:
             - authors-api
 
@@ -53,6 +54,47 @@ services:
             dockerfile: Dockerfile
         ports:
             -   "8080:80"
+        networks:
+            - authors-api
+    
+    redis:
+        image: redis:6-alpine
+        container_name: redis
+        networks:
+            - authors-api
+    celery_worker:
+        build:
+           context: .
+           dockerfile: ./docker/local/django/Dockerfile
+        depends_on:
+           - postgres
+           - mailhog
+           - redis
+        volumes:
+           - /app
+        env_file:
+           - ./.envs/.local/.django
+           - ./.envs/.local/.postgres
+        container_name: celery_worker
+        command: /start_celeryworker
+        networks:
+            - authors-api
+    flower:
+        build:
+           context: .
+           dockerfile: ./docker/local/django/Dockerfile
+        depends_on:
+           - postgres
+           - redis
+        volumes:
+           - /app
+        env_file:
+           - ./.envs/.local/.django
+           - ./.envs/.local/.postgres
+        container_name: flower
+        command: /start_flower
+        ports:
+            - "5555:5555"
         networks:
             - authors-api
 

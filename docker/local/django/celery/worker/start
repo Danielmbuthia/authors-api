@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+
+watchmedo auto-restart -d author_api/ -p '*.py' -- celery -A author_api worker --loglevel=info
